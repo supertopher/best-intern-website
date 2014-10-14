@@ -2,6 +2,18 @@
 require 'bundler/setup'
 Bundler.require(:default)
 
-get '/' do
-  "hello job world"
+# Set . to pre-pend the load path
+$LOAD_PATH.unshift(File.expand_path('.'))
+
+# Allow the environment to be set by rack while gracefully catching heroku load error
+begin
+  require 'dotenv'
+  Dotenv.load(".env.#{ENV['RACK_ENV']}", ".env")
+rescue LoadError
+end
+
+["routes", "helpers"].each do |directory_to_load|
+  Dir["#{directory_to_load}/*.rb"].each do |file_to_load|
+    require file_to_load
+  end
 end
