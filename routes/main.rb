@@ -1,3 +1,4 @@
 get '/' do
-  "hello world"
+  @all_contacts = ["name" => "Ziiiiiad"]
+  erb :index
 end

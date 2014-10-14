@@ -1,0 +1,35 @@
+
+<div class='container columns fourteen container offset-by-two'>
+  <div class='container columns fourteen'>
+    <div class='contact-form columns six'>
+      <h3>Contact</h3>
+      <form class='js-add-contact'>
+        <input type='textfield' placeholder='Name' name='name'>
+        <input type='tel' placeholder='Phone Number' name='phone'><br>
+        <input class="save-btn" type='submit' value="Save">
+      </form>
+    </div>
+
+    <div class='message-box columns six'>
+      <h3>Send a text message</h3>
+      <form class='js-send-message'>
+        <input type='textarea' name='message' placeholder='Write Text Message Here'>
+        <input type='hidden' name='contactid' value='none'>
+        <input type='submit' name='Send'>
+      </form>
+    </div>
+  </div>
+
+  <div class='contact-list columns six offset-by-one top-padding'>
+    Contacts
+    <div class='js-contact-list contact-iterator'>
+        <%@all_contacts.each do |contact|%>
+          <div class='js-contact-info'
+               data-contactid=<%= contact['id']%>
+               data-contactphone=<%= contact['number']%> >
+            <%= contact['name'] %>
+          </div>
+        <%end%>
+    </div>
+  </div>
+</div>

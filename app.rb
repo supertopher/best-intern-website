@@ -12,6 +12,8 @@ begin
 rescue LoadError
 end
 
-Dir["routes/*.rb"].each do |file_to_load|
-  require file_to_load
+["routes", "helpers"].each do |directory_to_load|
+  Dir["#{directory_to_load}/*.rb"].each do |file_to_load|
+    require file_to_load
+  end
 end
